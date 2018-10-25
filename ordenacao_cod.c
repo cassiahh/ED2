@@ -29,28 +29,29 @@ void Ordena_bubbleSort(int *v, int n){
 int main () {
 
 
-    int tamanho = {1000, 5000, 10000, 20000, 50000, 100000}, i;
-
-        for(i = 0; i < tamanho; i++)
-
+    int tamanho [6] = {1000, 5000, 10000, 20000, 50000, 100000}, i;
     int *VET = (int*)malloc(tamanho * sizeof(int));
 
-   srand(time(NULL));
+        for(i = 0; i < 6; i++){
 
-   for ( i = 0; i <tamanho; i++ )
-   {
-      VET[i] = rand();
-   }
 
-   Ordena_bubbleSort(VET, tamanho);
+            srand(time(NULL));
+            VET[i] = rand();
 
-    printf("\n\nVetor ordenado: \n\n");
+            Ordena_bubbleSort(VET, tamanho);
+        }
+
+            //for ( i = 0; i <6; i++ ){  }
+
+
+
+ /*   printf("\n\nVetor ordenado: \n\n");
     for(i = 0; i < tamanho; i++)
        printf("%d  ", VET[i]);
 
 loop 10x  cada qtidade
 arquivo
-tela resultado
+tela resultado */
 
 
 

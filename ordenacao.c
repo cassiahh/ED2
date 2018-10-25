@@ -21,6 +21,8 @@ void Ordena_bubbleSort(int *v, int n){
 
 }
 
+
+/*
 void Ordena_selectionSort(int *v, int n){
 	int i, j, menor, troca;
 	for(i = 0; i < n - 1; i++){
@@ -230,7 +232,7 @@ void RadixSortLSD(int *vetor, int tamanho){
     free(b);
 }
 
-
+*/
 
 
 int main(){
@@ -242,9 +244,9 @@ int main(){
     for(i = 0; i < tamanho; i++)
         VET[i] = 1 + rand()%1000;
 
-    radix_sort(VET, tamanho);
+    Ordena_bubbleSort(VET, tamanho);
 
-    printf("\n\nVetor ordenado: \n\n");
+    printf('\n\nVetor ordenado: \n\n');
     for(i = 0; i < tamanho; i++)
         printf("%d  ", VET[i]);
 

@@ -2,11 +2,13 @@
 #include <stdlib.h>
 #include <time.h>
 
+int VET, tamanho, i;
+
 int menu_metodo(){
-   
+
 char Seleciona;
 
-printf("Escolha o metodo de ordenacao");
+printf("\nEscolha o metodo de ordenacao");
 printf("\n '1'-BubbleSort");
 printf("\n '2'-InsertionSort");
 printf("\n '3'-SelectionSort");
@@ -16,89 +18,52 @@ printf("\n '6'-QuickSort");
 printf("\n '7'-HeapSort");
 printf("\n '8'-RadixSort(LSD)\n");
 
-printf("\nQual Metodo de Ordenacao Vamos Usar Hoje: ");
+printf("\nEscolha um Metodo de Ordenacao: ");
 scanf("\n%c",&Seleciona);
 
-switch (Seleciona)
-{
+switch (Seleciona){
 case '1':{
-         printf("\nAeee, Legal! Vamos utilizar o BubbleSort\n");
-            Ordena_bubbleSort(VET, tamanho);
-            default:
-            printf("\nEi, voce digitou um valor correto?\n");
-            break;
-            }
-
-
-break;
+        printf("\nAeee, Legal! Vamos utilizar o BubbleSort\n");
+        Ordena_bubbleSort(VET, tamanho);
+        break;
+        }
 case '2':
-         {printf("\nAeee, Legal! Vamos utilizar o InsertionSort\n");
-            Ordena_insertionSort(VET, tamanho);
-            default:
-            printf("\nEi, voce digitou um valor correto?\n");
-            break;
-            }
-break;
+         {
+        printf("\nAeee, Legal! Vamos utilizar o InsertionSort\n");
+        Ordena_insertionSort(VET, tamanho);
+        }
 case '3':{
-         printf("\nAeee, Legal! Vamos utilizar o SelectionSort\n");
-            Ordena_selectionSort(VET, tamanho);
-            break;
-            default:
-            printf("\nEi, voce digitou um valor correto?\n");
-            break;
-            }
-break;
+        printf("\nAeee, Legal! Vamos utilizar o SelectionSort\n");
+        Ordena_selectionSort(VET, tamanho);
+        break;
+        }
 case '4': {
-         printf("\nAeee, Legal! Vamos utilizar o ShellSort\n");
-           Ordena_shellSort(VET, tamanho);
-            break;
-            default:
-           
-            printf("\nEi, voce digitou um valor correto?\n");
-            break;
-            }
-
+        printf("\nAeee, Legal! Vamos utilizar o ShellSort\n");
+        Ordena_shellSort(VET, tamanho);
+        break;
+       }
 case '5':{
-         
          printf("\nAeee, Legal! Vamos utilizar o MergeSort\n");
-            
-            break;
-            default:
-            printf("\nEi, voce digitou um valor correto?\n");
-            break;
-            }
-break;
+
+        break;
+        }
 case '6':{
+        printf("\nAeee, Legal! Vamos utilizar o QuickSort\n");
 
-         printf("\nAeee, Legal! Vamos utilizar o QuickSort\n");
-           
-            break;
-            default:
-            printf("\nEi, voce digitou um valor correto?\n");
-            break;
-            }
-
+        break;
+        }
 case '7':{
-
         printf("\nAeee, Legal! Vamos utilizar o HeapSort\n");
-            HeapSort(VET, tamanho);
-            break;
-            default:
-            printf("\nEi, voce digitou um valor correto?\n");
-            break;
-            }
-break;
+        HeapSort(VET, tamanho);
+        break;
+        }
 case '8':{
-         
         printf("\nAeee, Legal! Vamos utilizar o RadixSort LSD\n");
         RadixSortLSD(VET, tamanho);
-break;
-default:
-          printf("\nEi, voce digitou um valor correto?\n");
-          break;
-}
+        break;
+        }
 printf("\n\n");
-}
+    }
 
 }
 
@@ -106,7 +71,7 @@ int menu_quantidade (){ // selecionar quantidade de elementos no vetor
 
 int QtdOrd;
 
-printf("Agora escolha a quantidade de elementos a serem ordenados: ");
+printf("\nEscolha a quantidade de elementos a serem ordenados: ");
         printf("\n '1'-1.000");
         printf("\n '2'-5.000");
         printf("\n '3'-10.000");
@@ -114,7 +79,7 @@ printf("Agora escolha a quantidade de elementos a serem ordenados: ");
         printf("\n '5'-50.000");
         printf("\n '6'-100.000\n");
         scanf("%i",&QtdOrd);
-        
+
 
         switch (QtdOrd){
             case 1: {printf("\n 1.000");
@@ -149,9 +114,9 @@ printf("Agora escolha a quantidade de elementos a serem ordenados: ");
             break;
 return 0;
 }
-    
+
 }
-           
+
 int vetor(QtdOrd){//Cria os Valores aleatorios para ordenar
 
 //  int tamanho = {1000, 5000, 10000, 20000, 50000, 100000}, i;
@@ -166,7 +131,8 @@ int vetor(QtdOrd){//Cria os Valores aleatorios para ordenar
 
 // tempo capturado pelo gettimeofday() no inicio e no fim do algoritmo
 double tempoTotal (double tempoInicial, double tempoFinal){
-    tempoTotal = tempoFinal - tempoInicial; 
+
+    double tempoTotal = (tempoFinal - tempoInicial)/(double)CLOCKS_PER_SEC;
     return tempoTotal;
 }
 
@@ -272,7 +238,7 @@ void merge(int vetor[], int comeco, int meio, int fim) {
     for(comAux = comeco; comAux <= fim; comAux++){    //Move os elementos de volta para o vetor original
         vetor[comAux] = vetAux[comAux-comeco];
     }
-    
+
     free(vetAux);
 }
 
@@ -331,10 +297,10 @@ void criaHeap(int *vetor, int i, int f){
 
 void QuickSort(int vetor[], int inicio, int fim){
     if(inicio < fim){
-        int pivo_indice = _ParticionaRandom(vetor, inicio, fim);
+        int pivo_indice = particionar(vetor, inicio, fim);
 
-        _QuickSort(vetor, inicio, pivo_indice - 1);
-        _QuickSort(vetor, pivo_indice + 1, fim);
+        QuickSort(vetor, inicio, pivo_indice - 1);
+        QuickSort(vetor, pivo_indice + 1, fim);
     }
 }
 
@@ -394,17 +360,17 @@ int QtdOrd,i, k;
 
     menu_quantidade();
 
-    tempoInicial = gettimeofday();    
+    clock_t tempoInicial = clock();
     menu_metodo ();
 //  Ordena_bubbleSort(VET, tamanho);
-    
-    tempoFinal = gettimeofday();
-    printf("\n\nVetor ordenado: \n\n");
+
+    clock_t tempoFinal = clock();
+ /*   printf("\n\nVetor ordenado: \n\n");
     for(i = 0; i < tamanho; i++)
         printf("%d  ", VET[i]);
-    
-    
-    printf("%d",tempo);
+*/
+
+    printf("O tempo gasto em segundos para ordenação foi de: %d",tempoFinal);
 
     system("pause");
 
