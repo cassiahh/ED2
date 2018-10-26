@@ -122,6 +122,7 @@ int vetor(QtdOrd){//Cria os Valores aleatorios para ordenar
                 }
 }
 
+
 double tempo(){
  struct timeval tv;
  gettimeofday(&tv,0);
@@ -310,7 +311,7 @@ int particionar (int vetor[], int inicio, int fim){
         while(inicio<fim && vetor[fim] > pivo)
             fim--;
 
-   //     troca(&vetor[inicio], &vetor[fim]);
+      //  troca(&vetor[inicio], &vetor[fim]);
     }
     return inicio;
 }
@@ -354,23 +355,25 @@ int QtdOrd,i, k, count;
 double tempoInicial, tempoFinal;
 
     menu_quantidade();
-while (count <11){
-    tempoInicial = tempo();
- //   menu_metodo ();
-  Ordena_bubbleSort(VET, tamanho);
 
-    tempoFinal = tempo();
+//while (count <11){  //para coleta de dados dos testes
+        tempoInicial = tempo();
+        menu_metodo ();   // omitido durante a coleta de dados dos testes
+//RadixSortLSD(VET, tamanho);  //para coleta de dados dos testes, só troca a chamada do algoritmo
 
-/*     printf("\n\nVetor ordenado: \n\n");
-        for(i = 0; i < 11; i++)
-        printf("%d  ", VET[i]);
-*/
-    printf("O tempo gasto em segundos para ordenacao foi de: %lf segundos\n\n",tempoFinal-tempoInicial);
-count++;}
+        tempoFinal = tempo();
+
+    /*     printf("\n\nVetor ordenado: \n\n");
+            for(i = 0; i < 11; i++)
+            printf("%d  ", VET[i]);
+    */
+        printf("O tempo gasto em segundos para ordenacao foi de bubble: %lf segundos\n\n",tempoFinal-tempoInicial   );
+count++; // }
 
     system("pause");
 
 
     return 0;
 }
+
 
