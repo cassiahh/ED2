@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
+#include <sys/time.h>
 
 int VET, tamanho, i;
 
@@ -71,44 +71,39 @@ int menu_quantidade (){ // selecionar quantidade de elementos no vetor
 
 int QtdOrd;
 
-printf("\nEscolha a quantidade de elementos a serem ordenados: ");
+printf("\nEscolha a quantidade de elementos a serem ordenados");
         printf("\n '1'-1.000");
         printf("\n '2'-5.000");
         printf("\n '3'-10.000");
         printf("\n '4'-20.000");
         printf("\n '5'-50.000");
         printf("\n '6'-100.000\n");
+        printf("\nEscolha a quantidade de elementos a serem ordenados: ");
         scanf("%i",&QtdOrd);
 
 
         switch (QtdOrd){
             case 1: {printf("\n 1.000");
-         //   QtdOrd = 1000;
             vetor(1000);
             }
             break;
             case 2:{printf("\n 5.000");
-           // QtdOrd = 5000;
             vetor(5000);
             }
             break;
             case 3:{printf("\n 10.000");
-            //QtdOrd = 10000;
             vetor(10000);
             }
             break;
             case 4:{printf("\n 20.000");
-           // QtdOrd = 20000;
             vetor(20000);
             }
             break;
             case 5:{printf("\n 50.000");
-           // QtdOrd = 50000;
             vetor(50000);
             }
             break;
             case 6:{printf("\n 100.000");
-            //QtdOrd = 100000;
             vetor(100000);
             }
             break;
@@ -127,14 +122,13 @@ int vetor(QtdOrd){//Cria os Valores aleatorios para ordenar
                 }
 }
 
-
-
-// tempo capturado pelo gettimeofday() no inicio e no fim do algoritmo
-double tempoTotal (double tempoInicial, double tempoFinal){
-
-    double tempoTotal = (tempoFinal - tempoInicial)/(double)CLOCKS_PER_SEC;
-    return tempoTotal;
+double tempo(){
+ struct timeval tv;
+ gettimeofday(&tv,0);
+ return tv.tv_sec + tv.tv_usec/1e6;
 }
+
+
 
 void Ordena_bubbleSort(int *v, int n){
 	int i, continua, aux, fim = n;
@@ -356,21 +350,23 @@ void RadixSortLSD(int *vetor, int tamanho){
 int main()
 {
 char Seleciona;
-int QtdOrd,i, k;
+int QtdOrd,i, k, count;
+double tempoInicial, tempoFinal;
 
     menu_quantidade();
+while (count <11){
+    tempoInicial = tempo();
+ //   menu_metodo ();
+  Ordena_bubbleSort(VET, tamanho);
 
-    clock_t tempoInicial = clock();
-    menu_metodo ();
-//  Ordena_bubbleSort(VET, tamanho);
+    tempoFinal = tempo();
 
-    clock_t tempoFinal = clock();
- /*   printf("\n\nVetor ordenado: \n\n");
-    for(i = 0; i < tamanho; i++)
+/*     printf("\n\nVetor ordenado: \n\n");
+        for(i = 0; i < 11; i++)
         printf("%d  ", VET[i]);
 */
-
-    printf("O tempo gasto em segundos para ordenação foi de: %d",tempoFinal);
+    printf("O tempo gasto em segundos para ordenacao foi de: %lf segundos\n\n",tempoFinal-tempoInicial);
+count++;}
 
     system("pause");
 
